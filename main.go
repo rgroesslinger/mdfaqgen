@@ -55,18 +55,16 @@ func main() {
 
 	// Questions list
 	md.WriteString("# Frequently Asked Questions\n\n")
-	md.WriteString("## Questions\n\n")
 	for _, item := range faq.Items {
 		urlFragment := toURLFragment(item.Q)
 		md.WriteString(fmt.Sprintf("- [%s](#%s)\n", item.Q, urlFragment))
 	}
-	md.WriteString("\n## Answers\n\n")
 
 	// Questions and answers
 	for _, item := range faq.Items {
 		urlFragment := toURLFragment(item.Q)
 		md.WriteString(fmt.Sprintf("<a name=\"%s\"></a>\n", urlFragment))
-		md.WriteString(fmt.Sprintf("### %s\n\n", item.Q))
+		md.WriteString(fmt.Sprintf("## %s\n\n", item.Q))
 		md.WriteString(item.A + "\n\n")
 	}
 
