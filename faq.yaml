@@ -1,0 +1,26 @@
+items:
+  - q: "What is the capital of Canada?"
+    a: "The capital of Canada is Ottawa."
+  - q: "What are the primary colors in the RGB color model?"
+    a: |
+      The primary colors in the RGB (Red, Green, Blue) color model are:
+      - **Red** (R)
+      - **Green** (G)
+      - **Blue** (B)
+
+      These colors can be combined to create a wide range of colors in digital displays.
+  - q: "What is the chemical symbol for gold?"
+    a: "The chemical symbol for gold is **Au** (from the Latin 'aurum')."
+  - q: "Who painted the Mona Lisa?"
+    a: |
+      The Mona Lisa was painted by Leonardo da Vinci between 1503 and 1519. It is currently housed in the Louvre Museum in Paris.
+      The painting is famous for its enigmatic smile and innovative technique. It is also one of the most visited and valuable artworks in the world.
+  - q: "What is the largest ocean in the world?"
+    a: "The Pacific Ocean is the largest ocean on Earth."
+  - q: "How many bones are in the adult human body?"
+    a: |
+      The adult human body has approximately **206 bones**.
+      This number can vary slightly between individuals.
+  - q: "What is the tallest mammal?"
+    a: "The tallest mammal is the **giraffe**, which can reach heights of up to 18 feet (5.5 meters)."
+
