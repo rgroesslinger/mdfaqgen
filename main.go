@@ -1,12 +1,12 @@
 package main
 
 import (
+	"bufio"
 	"fmt"
-	"io/ioutil"
+	"go.yaml.in/yaml/v4"
 	"os"
 	"regexp"
 	"strings"
-	"go.yaml.in/yaml/v4"
 )
 
 type FAQ struct {
@@ -35,8 +35,19 @@ func main() {
 	inputFile := os.Args[1]
 	outputFile := os.Args[2]
 
+	// Ask for confirmation if file exists
+	if _, err := os.Stat(outputFile); err == nil {
+		reader := bufio.NewReader(os.Stdin)
+		fmt.Printf("File %s already exists. Overwrite? (y/N): ", outputFile)
+		resp, _ := reader.ReadString('\n')
+		if strings.TrimSpace(strings.ToLower(resp)) != "y" {
+			fmt.Println("Aborted.")
+			os.Exit(0)
+		}
+	}
+
 	// Read YAML file
-	yamlData, err := ioutil.ReadFile(inputFile)
+	yamlData, err := os.ReadFile(inputFile)
 	if err != nil {
 		fmt.Printf("Error reading file: %v\n", err)
 		os.Exit(1)
@@ -60,6 +71,8 @@ func main() {
 		md.WriteString(fmt.Sprintf("- [%s](#%s)\n", item.Q, urlFragment))
 	}
 
+	md.WriteString("\n")
+
 	// Questions and answers
 	for _, item := range faq.Items {
 		urlFragment := toURLFragment(item.Q)
@@ -69,7 +82,7 @@ func main() {
 	}
 
 	// Write markdown file
-	err = ioutil.WriteFile(outputFile, []byte(md.String()), 0644)
+	err = os.WriteFile(outputFile, []byte(md.String()), 0644)
 	if err != nil {
 		fmt.Printf("Error writing file: %v\n", err)
 		os.Exit(1)
@@ -77,4 +90,3 @@ func main() {
 
 	fmt.Printf("Successfully created %s\n", outputFile)
 }
-
